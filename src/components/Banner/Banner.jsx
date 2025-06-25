@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/images/Banner.css';
+import './Banner.css';
 import PlantImage from '../../assets/images/bank-tree.jpeg'; 
 
 function Banner () {
