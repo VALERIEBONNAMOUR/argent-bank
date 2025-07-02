@@ -9,9 +9,14 @@
 }
 
 .feature-item-icon {
-  width: 5rem;
+  /* width: 5rem;
   height: 5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem; */
+ width: 100px;
+ height: 100px;
+ border: 4pax solid green;
+ border-radius: 50%;
+ background-color: transparent;
 }
 
 .feature-item-title {

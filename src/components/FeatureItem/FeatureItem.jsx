@@ -1,7 +1,7 @@
 import React from "react";
-import '../sass/components/_Item.scss';
+import '../FeatureItem/FeatureItem.css';
 
-function Item ({ image, descriptionImage, title, description }) {
+function FeatureItem ({ image, descriptionImage, title, description }) {
     return (
             <div className="feature-item">
                 <img src={image} alt={descriptionImage} className="feature-item-icon"/>
@@ -11,4 +11,4 @@ function Item ({ image, descriptionImage, title, description }) {
     )
 }
 
-export default Item
+export default FeatureItem;
