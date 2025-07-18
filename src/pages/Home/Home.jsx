@@ -1,15 +1,16 @@
 import React from "react";
-import FeatureItem from "../components/FeatureItem/FeatureItem";
-import Banner from "../components/Banner/Banner";
-import icon1 from '../assets/icons/icon-chat.png';
-import icon2 from '../assets/icons/icon-money.png';
-import icon3 from '../assets/icons/icon-security.png';
-import '../components/FeatureItem/FeatureItem.css';
+import FeatureItem from "../../components/FeatureItem/FeatureItem";
+import Banner from "../../components/Banner/Banner";
+import icon1 from '../../assets/icons/icon-chat.webp';
+import icon2 from '../../assets/icons/icon-money.webp';
+import icon3 from '../../assets/icons/icon-security.webp';
+import './Home.css';
 
 
 function ItemPage({ image, descriptionImage, title, description }) {
     return (
         <div><Banner className="item" />
+        <div className="container-item">
             <FeatureItem
                 image={icon1}
                 descriptionImage="Une icône"
@@ -28,6 +29,7 @@ function ItemPage({ image, descriptionImage, title, description }) {
                 title="Security you can trust"
                 description="We use top of the line encryption to make sure your data and money is always safe."
             />
+            </div>
         </div>
 
     )

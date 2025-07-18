@@ -1,6 +1,6 @@
 import React from 'react';
 import './Banner.css';
-import PlantImage from '../../assets/images/bank-tree.jpeg'; 
+import PlantImage from '../../assets/images/bank-tree.webp'; 
 
 function Banner () {
     return (

@@ -1,0 +1,20 @@
+.bg-dark {
+    background-color: #12002b;
+    padding: 3rem;
+    height: 100%;
+    padding-bottom: 366px;
+  }
+  
+  .sign-in-content {
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 3px;
+    width: 300px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .sign-in-icon {
+    width: 16px;
+    height: 16px;
+  }

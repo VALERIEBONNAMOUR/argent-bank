@@ -1,8 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
-import Home from '../src/pages/Home';
-import SignIn from '../src/pages/SignIn';
+import Home from './pages/Home/Home';
+import SignIn from './pages/SignIn/SignIn';
 import Header from './components/Header/Header';
+import './Style.css';
+import './pages/SignIn/SignIn.css';
+
+
 
 
 function App() {
@@ -11,7 +15,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/login" element={<SignIn />} />
         </Routes>
         <Footer />
       </Router>

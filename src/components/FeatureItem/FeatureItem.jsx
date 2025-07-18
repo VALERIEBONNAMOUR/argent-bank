@@ -8,6 +8,7 @@ function FeatureItem ({ image, descriptionImage, title, description }) {
                 <h3 className="feature-item-title">{title}</h3>
                 <p>{description}</p>
             </div>
+         
     )
 }
 
