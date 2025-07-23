@@ -39,7 +39,7 @@ p.text {
 
 .banner.introduction {
   background: white;
-  margin: 2rem;
+  /* margin: 2rem; */
   padding: 2rem;
   position: absolute;
   top: 3.125rem;
@@ -70,7 +70,7 @@ p.text {
 }
 
 .banner .introduction .text {
-  font-size: 1.2rem;
+  font-size: 1.2rem !important;
   margin-top: 1.1875rem;
 }
 
@@ -78,4 +78,5 @@ p.text {
   .banner .introduction .text {
     font-size: 0.9rem;
   }
+
 }

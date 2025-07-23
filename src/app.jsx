@@ -5,8 +5,7 @@ import SignIn from './pages/SignIn/SignIn';
 import Header from './components/Header/Header';
 import './Style.css';
 import './pages/SignIn/SignIn.css';
-
-
+import Error from './pages/Error/Error.jsx';
 
 
 function App() {
@@ -16,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<SignIn />} />
+           <Route path='*' element={<Error />} />
         </Routes>
         <Footer />
       </Router>
