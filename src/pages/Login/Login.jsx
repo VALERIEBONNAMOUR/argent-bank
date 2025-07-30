@@ -14,18 +14,39 @@ export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (email === 'user@example.com' && password === 'password123') {
-      const userData = { email, firstname: 'Jean' };
-      dispatch(login(userData));
-      // localStorage.setItem('user', JSON.stringify({ email, firstname: 'Jean' }));
+     try {
+      const response = await fetch('http://localhost:3001/api/v1/user/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Identifiants incorrects');
+      }
+
+      const data = await response.json();
+
+      dispatch(login({ email: data.email, firstname: data.firstname }));
+      localStorage.setItem('token', data.token); 
       navigate('/');
-    } else {
-      alert('Invalid');
+    } catch (error) {
+      alert(error.message || 'Erreur lors de la connexion');
     }
   };
+
+  //   if (email === 'user@example.com' && password === 'password123') {
+  //     localStorage.setItem('user', JSON.stringify({ email, firstname: 'Jean' }));
+  //     navigate('/');
+  //   } else {
+  //     alert('Invalid');
+  //   }
+  // };
 
   return (
     <main className="main bg-dark">
