@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../SignIn/SignIn.css';
+import './Login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/reducers/userSlice.jsx';
 
 
 
@@ -10,12 +12,15 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (email === 'user@example.com' && password === 'password123') {
-      localStorage.setItem('user', JSON.stringify({ email, firstname: 'Jean' }));
+      const userData = { email, firstname: 'Jean' };
+      dispatch(login(userData));
+      // localStorage.setItem('user', JSON.stringify({ email, firstname: 'Jean' }));
       navigate('/');
     } else {
       alert('Invalid');

@@ -1,15 +1,11 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { authReducer } from './reducers/auth.reducer.jsx';
-import { userReducer } from './reducers/user.reducer.jsx';
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './reducers/userSlice.jsx';
 
-const rootReducer = combineReducers({
-   auth: authReducer,
-   user: userReducer
-})
 
 const store = configureStore({
-    reducer: rootReducer,
-    devTools: true 
-})
+    reducer: {
+        user: userReducer,
+    },
+});
 
 export default store

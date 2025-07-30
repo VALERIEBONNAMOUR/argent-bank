@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
-import SignIn from './pages/SignIn/SignIn';
+import SignIn from './pages/Login/Login.jsx';
 import Header from './components/Header/Header';
 import './Style.css';
-import './pages/SignIn/SignIn.css';
+import './pages/Login/Login.css';
 import Error from './pages/Error/Error.jsx';
 
 
