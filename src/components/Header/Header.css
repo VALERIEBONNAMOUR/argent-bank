@@ -49,5 +49,12 @@ p{
   padding: 5px;
 }
 
+button.signout-btn{
+  background-color: white;
+  display: flex;
+  align-items: center;
+  border: none;
+}
+
 
 

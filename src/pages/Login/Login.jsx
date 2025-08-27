@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/reducers/userSlice.jsx';
 
@@ -11,14 +9,16 @@ import { login } from '../../redux/reducers/userSlice.jsx';
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
      try {
-      const response = await fetch('http://localhost:3001/api/v1/user/signup', {
+      const response = await fetch('http://localhost:3001/api/v1/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,27 +31,51 @@ export default function SignIn() {
       }
 
       const data = await response.json();
+      const token = data.body.token;
 
-      dispatch(login({ email: data.email, firstname: data.firstname }));
-      localStorage.setItem('token', data.token); 
-      navigate('/');
+      //stockage du token dans le localStorage
+      localStorage.setItem('token', token);
+
+      const profileResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!profileResponse.ok) {
+        throw new Error('Impossible de récupérer le profil utilisateur');
+      }
+
+      const profileData = await profileResponse.json();
+
+
+      dispatch(
+        login({
+          token: token,
+          userInfo: {
+          email: profileData.body.email,
+          firstName: profileData.body.firstName,
+          lastName: profileData.body.lastName,
+          userName: profileData.body.userName,
+          }
+        })
+      );
+
+      
+      navigate('/profile');
     } catch (error) {
-      alert(error.message || 'Erreur lors de la connexion');
+      setError(error.message || 'Erreur lors de la connexion');
     }
   };
 
-  //   if (email === 'user@example.com' && password === 'password123') {
-  //     localStorage.setItem('user', JSON.stringify({ email, firstname: 'Jean' }));
-  //     navigate('/');
-  //   } else {
-  //     alert('Invalid');
-  //   }
-  // };
+  
 
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
-        <FontAwesomeIcon icon={faUserCircle} className="sign-in-icon" />
+       <i className="fas fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
@@ -82,6 +106,7 @@ export default function SignIn() {
             Sign In
           </button>
         </form>
+         {error && <p className="error-message">{error}</p>}
       </section>
     </main>
   );
