@@ -5,8 +5,9 @@ import Logo from './../../assets/images/argentBankLogo.webp';
 import '../Header/Header.css';
 
 const Header = () => {
-  const token = useSelector((state) => state.user.token);
-  const profile = useSelector((state) => state.user.profile);
+  const token = localStorage.getItem('token');
+  const profile = useSelector((state) => state.user.userInfo);
+  console.log(profile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

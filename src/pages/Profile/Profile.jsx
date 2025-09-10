@@ -8,7 +8,7 @@ import AccountCardData from '../../data/AccountCardData.json';
 
 
 function UserProfile () {
-    const token = useSelector((state) => state.user.token);
+    const token = localStorage.getItem('token');
     const dispatch = useDispatch();
    
     

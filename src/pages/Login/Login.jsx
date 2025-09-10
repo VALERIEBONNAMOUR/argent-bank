@@ -33,7 +33,7 @@ export default function SignIn() {
       const data = await response.json();
       const token = data.body.token;
 
-      //stockage du token dans le localStorage
+      
       localStorage.setItem('token', token);
 
       const profileResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
@@ -50,10 +50,9 @@ export default function SignIn() {
 
       const profileData = await profileResponse.json();
 
-
+      console.log(profileData);
       dispatch(
-        login({
-          token: token,
+        login({ 
           userInfo: {
           email: profileData.body.email,
           firstName: profileData.body.firstName,
@@ -62,15 +61,12 @@ export default function SignIn() {
           }
         })
       );
-
-      
+  
       navigate('/profile');
     } catch (error) {
       setError(error.message || 'Erreur lors de la connexion');
     }
   };
-
-  
 
   return (
     <main className="main bg-dark">

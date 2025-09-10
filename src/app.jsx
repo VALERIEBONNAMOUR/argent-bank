@@ -12,7 +12,7 @@ import Profile from './pages/Profile/Profile.jsx';
 
 function App() {
 
-   const token = useSelector((state) => state.user.token);
+   const token = localStorage.getItem('token');
   return (
       <Router>
         <Header />

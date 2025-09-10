@@ -5,7 +5,7 @@ import "../User/User.css";
 
 function User() {
   const token = useSelector((state) => state.user.token);
-  const userData = useSelector((state) => state.user.profile);
+  const userData = useSelector((state) => state.user.userInfo);
 
   const [display, setDisplay] = useState(true);
   const [userName, setUserName] = useState(userData?.userName || "");
@@ -24,23 +24,9 @@ function User() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("http://localhost:3001/api/v1/user/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ userName }), 
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        const username = data.body.userName;
-        dispatch(updateUsername(username));
-        setDisplay(true);
-      } else {
-        console.log("Invalid Fields");
-      }
+     
+      dispatch(updateUsername(userName));
+      setDisplay(true);
     } catch (error) {
       console.error(error);
     }
@@ -53,7 +39,7 @@ function User() {
           <h2>
             Welcome back
             <br />
-            {userData?.firstName} {userData?.lastName} !
+             {userData?.userName} !
           </h2>
           <button className="edit-button" onClick={() => setDisplay(false)}>
             Edit Name
